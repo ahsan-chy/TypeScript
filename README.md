@@ -1,8 +1,19 @@
 # Typescript
 
 Table of Content
+- What is Typescript - Why we should use typescript
 - Setup TypeScript
 - Type Anotation 
+
+
+### What is Typescript - Why we should use typescript
+
+ TypeScript is a superset of JavaScript that adds static typing to the language, and it's commonly used in React development to catch errors early and improve code quality. 
+
+
+
+##### [Getting Started with TypeScript in React](https://medium.com/@kamindugayantha/getting-started-with-typescript-in-react-a-comprehensive-guide-650e73a4d84a)
+
 
 
 ### Setup TypeScript
@@ -108,4 +119,5 @@ let person: { name: string, age: number } = {
 ```
 
 Type annotations help **`catch`** potential type errors during development, provide better tooling support, and enhance code documentation. However, TypeScript also supports type inference, so in many cases, you don't need to explicitly specify types as they can be automatically inferred based on the assigned values.
+
 
