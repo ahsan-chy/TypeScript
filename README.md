@@ -2,8 +2,13 @@
 
 Table of Content
 - What is Typescript - Why we should use typescript
+- Difference between JS & TS
 - Setup TypeScript
 - Type Anotation 
+- **Type Aliases** in Typescript
+- **Interface** in Typescript
+- Any in TypeScript
+
 
 
 ### What is Typescript - Why we should use typescript
@@ -13,6 +18,30 @@ Table of Content
 
 
 ##### [Getting Started with TypeScript in React](https://medium.com/@kamindugayantha/getting-started-with-typescript-in-react-a-comprehensive-guide-650e73a4d84a)
+
+
+
+
+
+### Difference between Javascript & Typescript
+
+![JS-TS](https://www.boardinfinity.com/blog/content/images/2023/01/Copy-of-Copy-of-DIFFERENCES-JAVA-AND-JAVASCRIPT.png)
+
+
+
+| JavaScript  | TypeScript |
+| ------------- | ------------- |
+| Weekly Typed Language  | Strongly Typed Language  |
+| Seprate Programming Language  | Is Programming language which is build on top of Javascript with new features  |
+| Mostly Errors on Runtime  | Errors on Compile time  |
+| Mostly browsers support Js  | TS require Transpiler to convert to JS, like Babel  |
+| Easy to Write & Difficult to maintane  | Hard to write  |
+
+
+More Difference 
+
+![JS-TS](https://mobisoftinfotech.com/resources/wp-content/uploads/2022/04/comparison-between-typescript-and-javascript-713x1024.png)
+
 
 
 
@@ -28,12 +57,26 @@ To install and use TypeScript on Windows, follow these steps:
 npm install -g typescript
 ```
 
+Date: 25-11-23 current TSC version is `5.3.2`
+
+
+
 **4.** Verify the Installation: 
 ```javascript
 tsc --version
 ```
+help and more commonds: 
+```javascript
+tsc --help
+```
 
-**5.** Create & Run TypeScript file
+- Create File with **`app.ts`** and transpile **tsc app.ts** this will generate `app.js` file now run commond **`node app.js`**
+
+ Hurray TS Code is running 🥳🎈
+
+
+
+**5. Other Method** Create & Run TypeScript file
 
 - Create Folder & Open VS Code 
  
@@ -119,5 +162,212 @@ let person: { name: string, age: number } = {
 ```
 
 Type annotations help **`catch`** potential type errors during development, provide better tooling support, and enhance code documentation. However, TypeScript also supports type inference, so in many cases, you don't need to explicitly specify types as they can be automatically inferred based on the assigned values.
+
+
+
+## Type Aliases in Typescript
+
+Type aliases create a new name for a type. Type aliases are sometimes similar to interfaces, but can name primitives, unions, tuples, and any other types 
+
+This can be helpful for making complex types more readable or for creating reusable types in your code.
+
+
+
+Example without Type **Alias**
+
+```javascript
+function greet(person: { name: string; age: number }) {
+  console.log(`Hello, ${person.name}! You are ${person.age} years old.`);
+}
+
+const user = { name: 'John', age: 25 };
+
+greet(user);
+
+```
+
+
+Example **with Type Alias**
+
+```javascript
+type Person = { name: string; age: number };
+
+function greet(person: Person) {
+  console.log(`Hello, ${person.name}! You are ${person.age} years old.`);
+}
+
+const user: Person = { name: 'John', age: 25 };
+
+greet(user);
+
+```
+
+
+
+Another Example **With Type Alias**
+```javascript
+type User = {
+  name: string;
+  age: number;
+  isActive: boolean;
+};
+
+function createUser(user: User): User{
+  return user;
+}
+
+console.log(createUser({ name: "anonymous", age: 21, isActive: true }));
+```
+
+
+
+
+
+
+
+
+## Interface in Typescript
+
+
+
+You can say Interface is loose type of class. 
+
+
+```javascript
+
+interface Student {
+  readonly userId: number;
+  email: string;
+  studentId: number;
+  googleID?: number;
+  startTrail: () => string;
+  endTrail(): string;
+  fee(challanNo: number): number; // You can pass multiple parameters.
+}
+
+const Ali: Student = {
+  userId: 11,
+  email: "ali@enablehours.com",
+  studentId: 222,
+  startTrail: () => {
+    return "very soon";
+  },
+  endTrail: () => {
+    return "After Trails End";
+  },
+  fee: (no: 151515) => {
+    return 7000;
+  }
+};
+```
+
+
+
+#### Optional (?)
+
+Optional parameter help us to pass variables which are not necessary and may be you will use them in future. 
+
+```diff
+interface Student {
+  email: string,
+  studentId: number,
+!  googleID?: number
+
+}
+```
+
+#### ReadOnly
+
+By defining readonly you can't reasign the value to Readonly variable.
+
+```diff
+interface Student {
+!  readonly userId: number
+  email: string,
+  studentId: number,
+}
+```
+
+#### Function in interface
+
+
+```diff
+interface Student {
+  readonly userId: number;
+  email: string;
+  studentId: number;
+  googleID?: number;
+!  startTrail: () => string;
+!  endTrail(): string;
+!  fee(challanNo: number): number;
+}
+```
+
+Some people say **`You can reopen interface🤣`**`
+
+```javascript
+
+interface Student {
+  readonly userId: number;
+  email: string;
+  studentId: number;
+  googleID?: number;
+  startTrail: () => string;
+  endTrail(): string;
+  fee(challanNo: number): number;
+}
+```
+
+```javascript
+interface Student {
+  libraryCard: number
+}
+```
+
+
+
+You can do inheritence / Extend with Interface. 
+
+```javascript
+interface SeniorStudent extends Student {
+  role: "Admin" | "Head Boy" | "CR";
+}
+```
+
+
+
+## Interface vs Typescript
+
+[Refrence Link](https://www.typescriptlang.org/docs/handbook/advanced-types.html#interfaces-vs-type-aliases)
+
+
+## Any in TypeScript
+
+Using `any` in TypeScript essentially disables type checking for the values it represents. While there might be scenarios where using `any` is necessary (e.g., when migrating a JavaScript codebase to TypeScript or when dealing with values of unknown types), it's generally recommended to avoid `any` whenever possible. The reason is that TypeScript's static type system provides several benefits, including catching potential errors at compile-time and improving code readability and maintainability.
+
+Here's an example to illustrate why using `any` should be approached with caution:
+
+- Using 'any'
+```typescript
+function add(a: any, b: any): any {
+  return a + b;
+}
+
+const result: any = add(5, '10'); // No type errors, but unexpected behavior
+```
+
+- Without 'any'
+
+```javascript
+function addTyped(a: number, b: number): number {
+  return a + b;
+}
+
+// TypeScript will catch the error at compile-time
+const resultTyped: number = addTyped(5, '10'); // Type error
+```
+
+
+
 
 
