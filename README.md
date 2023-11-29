@@ -11,6 +11,17 @@ Table of Content
 
 
 
+
+#### TS Terms
+
+- `Anotate`: Notation - Note - Comment - Footnote
+  An additional piece of information printed at the bottom of a page.
+- `Explicitly`: Clear - Obviously - Explained - Undeniably
+- `Implicitly`: Completely - Absolutely - Totally - Utterly
+- ``
+- ``
+
+
 ### What is Typescript - Why we should use typescript
 
  TypeScript is a superset of JavaScript that adds static typing to the language, and it's commonly used in React development to catch errors early and improve code quality. 
@@ -19,7 +30,15 @@ Table of Content
 
 ##### [Getting Started with TypeScript in React](https://medium.com/@kamindugayantha/getting-started-with-typescript-in-react-a-comprehensive-guide-650e73a4d84a)
 
+Different features of TS:
+- Interface
+- Enums
+- Tuples
+- Generic
+- Classes, Abstract Class
 
+
+**Opt-In**
 
 
 
@@ -113,6 +132,18 @@ let n:number = 10;
 
 console.log(n)
 ```
+
+
+## Different Datatypes in Typescript
+
+- Object 
+- Array
+- String 
+- Boolean
+- Function
+
+
+
 
 
 ## Type annotations
@@ -366,6 +397,7 @@ function addTyped(a: number, b: number): number {
 // TypeScript will catch the error at compile-time
 const resultTyped: number = addTyped(5, '10'); // Type error
 ```
+
 
 
 
