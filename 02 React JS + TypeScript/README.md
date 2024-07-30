@@ -87,6 +87,39 @@ Table of Content
 }
 ```
 
+#### TS Configuration Settings
+
+- **Target:**
+
+```javascript
+target: "es5";
+target: "es6";
+target: "ESNext";
+```
+
+- **Module**
+
+```javascript
+"module": "commonjs",   // Uses the CommonJS module system, which is standard for Node.js.
+"module": "esnext"  //Uses the latest ECMAScript standard for modules. This setting is forward-compatible with future versions of ECMAScript.
+"module": "es6" // es6 - es2015
+"module": "system"
+"module": "umd"
+"module": "none"
+```
+
+- ***
+
+```javascript
+
+```
+
+- ***
+
+```javascript
+
+```
+
 ## Typescript Ignore
 
 ```javascript
@@ -99,9 +132,18 @@ or
 /* @ts-ignore */
 ```
 
-```javascript
+or
 
+```javascript
+//  @ts-ignore
 ```
+
+### Different Type of errors in Typescript
+
+- Syntax Error
+- Assignability Error 
+- Type Error
+
 
 ## Type Aliases in Typescript
 
